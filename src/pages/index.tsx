@@ -1,10 +1,9 @@
 import type {NextPage} from "next";
 import Head from "next/head";
 import {trpc} from "../utils/trpc";
+import {useState} from "react";
 
 const Home: NextPage = () => {
-    const hello = trpc.useQuery(["instapaper.login"]);
-
     return (
         <>
             <Head>

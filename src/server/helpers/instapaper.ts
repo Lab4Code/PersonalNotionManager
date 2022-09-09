@@ -10,7 +10,7 @@ import request from 'request-promise';
 
 export default class Instapaper {
     private baseURL = 'https://www.instapaper.com/api/';
-    private user: string | undefined;
+    private username: string | undefined;
     private password: string | undefined;
     private token: OAuth.Token | undefined;
     private authorizing: string | undefined;
@@ -18,13 +18,12 @@ export default class Instapaper {
     private readonly consumer_secret;
     private oauth;
 
-    constructor(user: string, password: string) {
-        this.user = user;
+    constructor(username: string, password: string) {
+        this.username = username;
         this.password = password;
         this.consumer_key = env.INSTAPAPER_CONSUMER_ID;
         this.consumer_secret = env.INSTAPAPER_CONSUMER_SECRET;
         this.oauth = this.createOAuth();
-        this.authorize();
     }
 
     createOAuth = () => {
@@ -45,14 +44,14 @@ export default class Instapaper {
                 return resolve(this.authorizing);
             }
 
-            if (!this.user || !this.password) {
+            if (!this.username || !this.password) {
                 return reject('please input valid username and password');
             }
 
             const options = this.buildAuthOption('1/oauth/access_token', {
                 format: 'qline',
                 data: {
-                    x_auth_username: this.user,
+                    x_auth_username: this.username,
                     x_auth_password: this.password,
                     x_auth_mode: 'client_auth',
                 },
@@ -77,7 +76,10 @@ export default class Instapaper {
                     };
 
                     resolve(this);
-                })
+                }).catch((error: Error) => {
+                    this.authorizing = undefined;
+                    reject(error);
+                });
         });
     };
 
