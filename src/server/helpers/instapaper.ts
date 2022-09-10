@@ -12,7 +12,7 @@ export default class Instapaper {
     private baseURL = 'https://www.instapaper.com/api/';
     private username: string | undefined;
     private password: string | undefined;
-    private token: OAuth.Token | undefined;
+    public token: OAuth.Token | undefined;
     private authorizing: string | undefined;
     private readonly consumer_key;
     private readonly consumer_secret;

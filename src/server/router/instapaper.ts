@@ -15,7 +15,28 @@ export const instapaperRouter = createRouter()
             const instapaper = new Instpaper(input.username, input.password)
             try {
                 await instapaper.authorize();
-                return await instapaper.listArchivedBookmarks();
+                console.log(instapaper.token)
+                const userId = ctx.session?.user?.id;
+                const tokenKey = instapaper.token?.key
+                const tokenSecret = instapaper.token?.secret
+                if (userId && tokenKey && tokenSecret) {
+                    ctx.prisma.instapaperAccount.upsert({
+                        where: {
+                            user_id: userId,
+                        },
+                        update: {
+                            key: tokenKey,
+                            secret: tokenSecret,
+                        },
+                        create: {
+                            key: tokenKey,
+                            secret: tokenSecret,
+                            user_id: userId,
+                        },
+                    })
+                }
+                const bookmarks = await instapaper.listArchivedBookmarks();
+                return bookmarks
             } catch (e) {
                 throw new trpc.TRPCError({
                     code: 'UNAUTHORIZED',
