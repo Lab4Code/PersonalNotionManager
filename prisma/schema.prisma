@@ -61,9 +61,11 @@ model VerificationToken {
 }
 
 model InstapaperAccount {
-  id      Int    @id @default(autoincrement())
-  key     String
-  secret  String
-  user_id String @db.unique
-  user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  id       Int     @id @default(autoincrement())
+  key      String
+  secret   String
+  user_id  String  @unique
+  username String?
+  password String?
+  user     User    @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }

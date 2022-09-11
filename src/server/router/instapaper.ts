@@ -1,7 +1,7 @@
 import {createRouter} from "./context";
 import {z} from "zod";
 
-import Instpaper from "../helpers/instapaper";
+import Instpaper from "../api/instapaper";
 import * as trpc from '@trpc/server';
 
 
@@ -10,6 +10,7 @@ export const instapaperRouter = createRouter()
         input: z.object({
             username: z.string(),
             password: z.string(),
+            remember: z.boolean()
         }),
         async resolve({ctx, input}) {
             const instapaper = new Instpaper(input.username, input.password)
