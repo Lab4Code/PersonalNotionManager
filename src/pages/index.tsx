@@ -1,9 +1,11 @@
 import type {NextPage} from "next";
 import Head from "next/head";
-import {trpc} from "../utils/trpc";
-import {useState} from "react";
+import Link from "next/link";
+import {useSession, signIn, signOut} from "next-auth/react"
+
 
 const Home: NextPage = () => {
+    const {data: session, status} = useSession();
     return (
         <>
             <Head>
@@ -13,6 +15,10 @@ const Home: NextPage = () => {
             </Head>
 
             <main className="container mx-auto flex flex-col items-center justify-center min-h-screen p-4">
+                <Link href={"/login"}>Manage Accounts</Link>
+
+                {!session ? <button onClick={() => signIn("GitHub")}>Login Github</button> :
+                    <button onClick={() => signOut()}>Logout</button>}
             </main>
         </>
     );

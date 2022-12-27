@@ -14,6 +14,8 @@ export const serverSchema = z.object({
     GITHUB_CLIENT_SECRET: z.string(),
     INSTAPAPER_CONSUMER_ID: z.string(),
     INSTAPAPER_CONSUMER_SECRET: z.string(),
+    NOTION_SECURITY_KEY: z.string(),
+    NOTION_DIARY_DB_ID: z.string(),
 });
 
 /**

@@ -9,9 +9,12 @@ const InstapaperLogin = () => {
     const [password, setPassword] = useState("");
     const [remember, setRemember] = useState(false);
     const [isErrorOpen, setIsErrorOpen] = useState(false);
-    const instapaperLogin = trpc.useMutation(['instapaper.login'], {
+    const instapaperLogin = trpc.instapaper.login.useMutation({
         onError: () => {
             setIsErrorOpen(true)
+        },
+        onSuccess: () => {
+            window.close();
         }
     });
 

@@ -1,18 +1,17 @@
-import {createRouter} from "./context";
 import {z} from "zod";
 
-import Instpaper from "../api/instapaper";
-import * as trpc from '@trpc/server';
+import Instpaper from "../../api/instapaper";
+import {router, publicProcedure, protectedProcedure} from "../trpc";
+import {TRPCError} from "@trpc/server";
 
-
-export const instapaperRouter = createRouter()
-    .mutation("login", {
-        input: z.object({
+export const instapaperRouter = router({
+    login: publicProcedure
+        .input(z.object({
             username: z.string(),
             password: z.string(),
             remember: z.boolean()
-        }),
-        async resolve({ctx, input}) {
+        }))
+        .mutation(async ({ctx, input}) => {
             const instapaper = new Instpaper(input.username, input.password)
             try {
                 await instapaper.authorize();
@@ -39,11 +38,11 @@ export const instapaperRouter = createRouter()
                 const bookmarks = await instapaper.listArchivedBookmarks();
                 return bookmarks
             } catch (e) {
-                throw new trpc.TRPCError({
+                throw new TRPCError({
                     code: 'UNAUTHORIZED',
                     message: 'Login Failed.',
                     cause: e,
                 })
             }
-        },
-    });
+        }),
+});
