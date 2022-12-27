@@ -16,6 +16,9 @@ export const serverSchema = z.object({
     INSTAPAPER_CONSUMER_SECRET: z.string(),
     NOTION_SECURITY_KEY: z.string(),
     NOTION_DIARY_DB_ID: z.string(),
+    NOTION_CLIENT_ID: z.string(),
+    NOTION_CLIENT_SECRET: z.string(),
+    NOTION_AUTH_URL: z.string(),
 });
 
 /**

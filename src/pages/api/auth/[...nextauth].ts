@@ -4,6 +4,7 @@ import {PrismaAdapter} from "@next-auth/prisma-adapter";
 import {prisma} from "../../../server/db/client";
 import {env} from "../../../env/server.mjs";
 import GitHubProvider from "next-auth/providers/github";
+import Notion from "./providers/notion";
 
 export const authOptions: NextAuthOptions = {
     callbacks: {
@@ -20,6 +21,11 @@ export const authOptions: NextAuthOptions = {
             clientId: env.GITHUB_CLIENT_ID,
             clientSecret: env.GITHUB_CLIENT_SECRET,
         }),
+        Notion({
+            clientId: env.NOTION_CLIENT_ID,
+            clientSecret: env.NOTION_CLIENT_SECRET,
+            redirectUri: "http://localhost:3000/api/auth/callback/notion"
+        })
     ],
 };
 
