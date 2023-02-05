@@ -1,13 +1,28 @@
-# Personal Notion Manager
-The Notion helper is a tool that integrates with Instapaper, MyAnimeList, and GoodReads to help manage tasks and activities. It uses the Notion API and other APIs to allow for programmatic access and manipulation of data in the user's account. The tool can be a useful way to streamline work and keep track of important information.
+# Create T3 App
 
-- [ ] Connect to Instapaper
-- [ ] Implement Instapaper into my workflow
-- [ ] Make a Database Picker for Notion
-- [ ] Implement automatic Diary Date creation
-- [x] Implement automatic Diary Date naming
-- [ ] Sync MyAnimeList with Notion
-- [ ] Sync GoodReads with Notion
-- [ ] Sync Instapaper with Notion
-- [ ] Implement GitHub and other Login options
-- [ ] Implement notion OAuth
+This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+
+## What's next? How do I make an app with this?
+
+We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+
+If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+
+- [Next.js](https://nextjs.org)
+- [NextAuth.js](https://next-auth.js.org)
+- [Prisma](https://prisma.io)
+- [Tailwind CSS](https://tailwindcss.com)
+- [tRPC](https://trpc.io)
+
+## Learn More
+
+To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+
+- [Documentation](https://create.t3.gg/)
+- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+
+You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+
+## How do I deploy this?
+
+Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.

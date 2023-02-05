@@ -1,5 +1,5 @@
 import { Client } from "@notionhq/client";
-import { env } from "../../env/server.mjs";
+import { env } from "../../../env/server.mjs";
 
 const getDatabaseEntries: any = async (
   notion: Client,

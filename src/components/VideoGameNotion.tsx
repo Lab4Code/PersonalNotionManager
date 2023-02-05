@@ -1,4 +1,4 @@
-import { trpc } from "../utils/trpc";
+import { api } from "../utils/api";
 import { signIn } from "next-auth/react";
 import React, { useState } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
@@ -6,7 +6,7 @@ import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 const VideoGameNotion = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchEnabled, setSearchEnabled] = useState<boolean>(false);
-  const { data, isLoading } = trpc.notion.searchDatabases.useQuery(
+  const { data, isLoading } = api.notion.searchDatabases.useQuery(
     { databaseName: searchTerm },
     {
       enabled: searchTerm != "" && searchEnabled,
